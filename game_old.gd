@@ -1,4 +1,3 @@
-class_name Game
 extends Node2D
 
 #a place for stopgap game code, eventually will be empty

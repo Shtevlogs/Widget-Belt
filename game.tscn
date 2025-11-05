@@ -1,0 +1,94 @@
+[gd_scene load_steps=11 format=3 uid="uid://b6vhleeju7woj"]
+
+[ext_resource type="Texture2D" uid="uid://dn7mjmh0uka0q" path="res://sprites/Background.png" id="1_80nbo"]
+[ext_resource type="Script" uid="uid://cf3sjbdgrc5ho" path="res://game.gd" id="1_eow3j"]
+[ext_resource type="Texture2D" uid="uid://c42wvqhax02n6" path="res://sprites/Icons.png" id="2_e2o6t"]
+[ext_resource type="Script" uid="uid://dspjeq60ccpfn" path="res://src/ui/ui_events.gd" id="2_j5wjh"]
+[ext_resource type="Texture2D" uid="uid://dbec01qk266ug" path="res://sprites/Highlight.png" id="4_fc0e3"]
+[ext_resource type="Script" uid="uid://bod22q4mlxqfp" path="res://src/ui/panels/widget_flow.gd" id="4_ryrav"]
+[ext_resource type="Texture2D" uid="uid://kvu5tpsawi5e" path="res://sprites/Modal.png" id="5_7jktm"]
+[ext_resource type="Script" uid="uid://jfdch6q8soem" path="res://src/ui/panels/asteroid_list.gd" id="6_eow3j"]
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_feb5d"]
+atlas = ExtResource("2_e2o6t")
+region = Rect2(305, 273, 102, 119)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_ryrav"]
+atlas = ExtResource("5_7jktm")
+region = Rect2(280, 12, 719, 656)
+
+[node name="Game" type="Node2D"]
+script = ExtResource("1_eow3j")
+
+[node name="UIEvents" type="Node" parent="."]
+script = ExtResource("2_j5wjh")
+
+[node name="Camera2D" type="Camera2D" parent="."]
+
+[node name="Background" type="Sprite2D" parent="."]
+texture = ExtResource("1_80nbo")
+
+[node name="OpenWidgetFlow" type="Button" parent="."]
+offset_left = -646.0
+offset_top = -57.0
+offset_right = -568.0
+offset_bottom = 70.0
+mouse_default_cursor_shape = 2
+icon = SubResource("AtlasTexture_feb5d")
+flat = true
+expand_icon = true
+
+[node name="WidgetFlow" type="Node2D" parent="."]
+position = Vector2(-1280, 0)
+script = ExtResource("4_ryrav")
+
+[node name="WidgetFlowBackground" type="Sprite2D" parent="WidgetFlow"]
+modulate = Color(0.0042000003, 0.048066653, 0.07, 1)
+position = Vector2(0, -5.376339e-05)
+scale = Vector2(5, 2.8124998)
+texture = ExtResource("4_fc0e3")
+
+[node name="CloseWidgetFlow" type="Button" parent="WidgetFlow"]
+offset_left = 645.0
+offset_top = 69.0
+offset_right = 723.0
+offset_bottom = 196.0
+rotation = 3.1415927
+mouse_default_cursor_shape = 2
+icon = SubResource("AtlasTexture_feb5d")
+flat = true
+expand_icon = true
+
+[node name="OpenAsteroidList" type="Button" parent="WidgetFlow"]
+offset_left = -590.0
+offset_top = 364.0
+offset_right = -512.0
+offset_bottom = 491.0
+rotation = 4.712389
+mouse_default_cursor_shape = 2
+icon = SubResource("AtlasTexture_feb5d")
+flat = true
+expand_icon = true
+
+[node name="AsteroidList" type="Node2D" parent="WidgetFlow"]
+script = ExtResource("6_eow3j")
+
+[node name="AsteroidListBackground" type="Sprite2D" parent="WidgetFlow/AsteroidList"]
+position = Vector2(-321, 688)
+texture = SubResource("AtlasTexture_ryrav")
+
+[node name="CloseAsteroidList" type="Button" parent="WidgetFlow/AsteroidList"]
+offset_left = -464.0
+offset_top = 357.0
+offset_right = -386.0
+offset_bottom = 484.0
+rotation = 1.5707964
+mouse_default_cursor_shape = 2
+icon = SubResource("AtlasTexture_feb5d")
+flat = true
+expand_icon = true
+
+[connection signal="pressed" from="OpenWidgetFlow" to="UIEvents" method="_on_open_widget_flow_pressed"]
+[connection signal="pressed" from="WidgetFlow/CloseWidgetFlow" to="UIEvents" method="_on_close_widget_flow_pressed"]
+[connection signal="pressed" from="WidgetFlow/OpenAsteroidList" to="UIEvents" method="_on_open_asteroid_list_pressed"]
+[connection signal="pressed" from="WidgetFlow/AsteroidList/CloseAsteroidList" to="UIEvents" method="_on_close_asteroid_list_pressed"]
