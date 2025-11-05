@@ -1,0 +1,44 @@
+[gd_scene load_steps=7 format=3 uid="uid://3bpbkmfagev2"]
+
+[ext_resource type="Script" uid="uid://dm0tc6ev43w6h" path="res://scripts/factory_camera.gd" id="1_e2o6t"]
+[ext_resource type="Script" uid="uid://hwrn0btvydne" path="res://game_old.gd" id="1_eow3j"]
+[ext_resource type="PackedScene" uid="uid://crfyb5xvpa45u" path="res://resources/screens/factory_screen.tscn" id="2_feb5d"]
+[ext_resource type="Script" uid="uid://dvmy3y0yct547" path="res://scripts/display/asteroid_table.gd" id="4_7jktm"]
+[ext_resource type="Script" uid="uid://byjei3epjwsap" path="res://scripts/idle_process.gd" id="6_eow3j"]
+[ext_resource type="Script" uid="uid://b5x0ifc312uy1" path="res://scripts/asteroid_mouse_handler.gd" id="6_ryrav"]
+
+[node name="Game" type="Node2D"]
+script = ExtResource("1_eow3j")
+
+[node name="Camera2D" type="Camera2D" parent="."]
+script = ExtResource("1_e2o6t")
+
+[node name="FactoryScreen" parent="." instance=ExtResource("2_feb5d")]
+process_mode = 4
+
+[node name="AsteroidCatalogScreen" type="Node2D" parent="."]
+
+[node name="AsteroidTable" type="Node2D" parent="AsteroidCatalogScreen"]
+script = ExtResource("4_7jktm")
+
+[node name="AsteroidMouseHandler" type="Node2D" parent="AsteroidCatalogScreen"]
+script = ExtResource("6_ryrav")
+
+[node name="BuyButton" type="Button" parent="AsteroidCatalogScreen"]
+offset_left = -18.0
+offset_top = 316.0
+offset_right = 20.0
+offset_bottom = 347.0
+text = "Buy"
+
+[node name="IdleProcess" type="Node" parent="."]
+script = ExtResource("6_eow3j")
+
+[node name="UI" type="CanvasLayer" parent="."]
+
+[node name="Label" type="Label" parent="UI"]
+offset_right = 40.0
+offset_bottom = 23.0
+text = "$0"
+
+[connection signal="pressed" from="AsteroidCatalogScreen/BuyButton" to="." method="_on_buy_button_pressed"]

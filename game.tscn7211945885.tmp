@@ -1,0 +1,22 @@
+[gd_scene load_steps=6 format=3 uid="uid://3bpbkmfagev2"]
+
+[ext_resource type="Script" uid="uid://dm0tc6ev43w6h" path="res://scripts/factory_camera.gd" id="1_e2o6t"]
+[ext_resource type="Script" uid="uid://hwrn0btvydne" path="res://game.gd" id="1_eow3j"]
+[ext_resource type="PackedScene" uid="uid://crfyb5xvpa45u" path="res://resources/screens/factory_screen.tscn" id="2_feb5d"]
+[ext_resource type="Script" uid="uid://dvmy3y0yct547" path="res://scripts/display/asteroid_table.gd" id="4_7jktm"]
+[ext_resource type="PackedScene" uid="uid://bk58v53f0p25f" path="res://resources/asteroid.tscn" id="4_fc0e3"]
+
+[node name="Game" type="Node2D"]
+script = ExtResource("1_eow3j")
+
+[node name="Camera2D" type="Camera2D" parent="."]
+script = ExtResource("1_e2o6t")
+
+[node name="FactoryScreen" parent="." instance=ExtResource("2_feb5d")]
+
+[node name="AsteroidCatalogScreen" type="Node2D" parent="."]
+
+[node name="AsteroidTable" type="Node2D" parent="AsteroidCatalogScreen"]
+script = ExtResource("4_7jktm")
+
+[node name="Asteroid" parent="AsteroidCatalogScreen/AsteroidTable" instance=ExtResource("4_fc0e3")]

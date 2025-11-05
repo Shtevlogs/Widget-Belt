@@ -1,0 +1,70 @@
+[gd_scene load_steps=9 format=3 uid="uid://3bpbkmfagev2"]
+
+[ext_resource type="PackedScene" uid="uid://cppiyq48u8taq" path="res://resources/block.tscn" id="1_80nbo"]
+[ext_resource type="Script" uid="uid://dm0tc6ev43w6h" path="res://scripts/factory_camera.gd" id="1_e2o6t"]
+[ext_resource type="Script" uid="uid://hwrn0btvydne" path="res://game.gd" id="1_eow3j"]
+[ext_resource type="Script" uid="uid://bj3kdveup7kwt" path="res://scripts/display/widget_display.gd" id="2_feb5d"]
+[ext_resource type="Shader" uid="uid://cqjd5xobqbhex" path="res://shaders/highlight.gdshader" id="3_fc0e3"]
+[ext_resource type="Texture2D" uid="uid://dbec01qk266ug" path="res://sprites/Highlight.png" id="4_7jktm"]
+[ext_resource type="Script" uid="uid://37q234k545a6" path="res://scripts/factory_mouse_handler.gd" id="6_ryrav"]
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_ryrav"]
+shader = ExtResource("3_fc0e3")
+shader_parameter/face_center = Vector2(0.5, 0.5)
+shader_parameter/face_radius = 0.4
+
+[node name="Game" type="Node2D"]
+script = ExtResource("1_eow3j")
+
+[node name="Camera2D" type="Camera2D" parent="."]
+script = ExtResource("1_e2o6t")
+
+[node name="Widget" type="Node2D" parent="."]
+script = ExtResource("2_feb5d")
+
+[node name="Highlight" type="Sprite2D" parent="Widget"]
+visible = false
+material = SubResource("ShaderMaterial_ryrav")
+position = Vector2(12, 21)
+texture = ExtResource("4_7jktm")
+
+[node name="Blocks" type="Area2D" parent="Widget"]
+scale = Vector2(3, 3)
+
+[node name="Block" parent="Widget/Blocks" instance=ExtResource("1_80nbo")]
+
+[node name="Block2" parent="Widget/Blocks" instance=ExtResource("1_80nbo")]
+position = Vector2(0, 10)
+
+[node name="Block3" parent="Widget/Blocks" instance=ExtResource("1_80nbo")]
+position = Vector2(0, 20)
+
+[node name="Block4" parent="Widget/Blocks" instance=ExtResource("1_80nbo")]
+position = Vector2(10, 0)
+
+[node name="Widget2" type="Node2D" parent="."]
+position = Vector2(-181, -95)
+script = ExtResource("2_feb5d")
+
+[node name="Highlight" type="Sprite2D" parent="Widget2"]
+visible = false
+material = SubResource("ShaderMaterial_ryrav")
+position = Vector2(16, 16)
+texture = ExtResource("4_7jktm")
+
+[node name="Blocks" type="Area2D" parent="Widget2"]
+scale = Vector2(3, 3)
+
+[node name="Block" parent="Widget2/Blocks" instance=ExtResource("1_80nbo")]
+
+[node name="Block2" parent="Widget2/Blocks" instance=ExtResource("1_80nbo")]
+position = Vector2(0, 10)
+
+[node name="Block3" parent="Widget2/Blocks" instance=ExtResource("1_80nbo")]
+position = Vector2(10, 10)
+
+[node name="Block4" parent="Widget2/Blocks" instance=ExtResource("1_80nbo")]
+position = Vector2(10, 0)
+
+[node name="FactoryMouseHandler" type="Node2D" parent="."]
+script = ExtResource("6_ryrav")

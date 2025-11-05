@@ -1,0 +1,7 @@
+[gd_resource type="Resource" script_class="WidgetBus" load_steps=2 format=3 uid="uid://bojv6l0cwfojc"]
+
+[ext_resource type="Script" uid="uid://cjfd7qasrjfao" path="res://scripts/buses/widget_bus.gd" id="1_mpem8"]
+
+[resource]
+script = ExtResource("1_mpem8")
+metadata/_custom_type_script = "uid://cjfd7qasrjfao"

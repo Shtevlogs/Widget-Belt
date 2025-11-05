@@ -1,0 +1,7 @@
+[gd_resource type="Resource" script_class="AsteroidBus" load_steps=2 format=3 uid="uid://pdxsickjrivg"]
+
+[ext_resource type="Script" uid="uid://qypfufn2eoh3" path="res://scripts/buses/asteroid_bus.gd" id="1_biay5"]
+
+[resource]
+script = ExtResource("1_biay5")
+metadata/_custom_type_script = "uid://qypfufn2eoh3"

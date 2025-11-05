@@ -1,0 +1,44 @@
+[gd_scene load_steps=9 format=3 uid="uid://c3khshi7oa7xi"]
+
+[ext_resource type="Script" uid="uid://bj3kdveup7kwt" path="res://scripts/display/widget_display.gd" id="1_yk74w"]
+[ext_resource type="Shader" uid="uid://cqjd5xobqbhex" path="res://shaders/highlight.gdshader" id="2_xaop3"]
+[ext_resource type="Texture2D" uid="uid://dbec01qk266ug" path="res://sprites/Highlight.png" id="3_vdeyo"]
+[ext_resource type="Shader" uid="uid://dptqn0iqdo4q3" path="res://shaders/widget.gdshader" id="4_xaop3"]
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_ryrav"]
+shader = ExtResource("2_xaop3")
+shader_parameter/face_center = Vector2(0.5, 0.5)
+shader_parameter/face_radius = 0.4
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_xaop3"]
+shader = ExtResource("4_xaop3")
+shader_parameter/BLACK_COLORS = PackedColorArray(0, 0, 0, 1, 1, 1, 1, 1, 1, 0.35000002, 0.35000002, 1, 1, 0.78333336, 0.35000002, 1, 0.935, 1, 0.35000002, 1, 0.35000002, 1, 0.42583346, 1, 0.35000002, 1, 0.9458332, 1, 0.35000002, 0.50166684, 1, 1, 1, 0.35000002, 0.97833335, 1)
+shader_parameter/face_center = Vector2(0.5, 0.5)
+shader_parameter/face_radius = 0.4
+shader_parameter/blocks = PackedInt32Array(0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0)
+
+[sub_resource type="CompressedTexture2D" id="CompressedTexture2D_xaop3"]
+load_path = "res://.godot/imported/Highlight.png-306f547a93f816f1cf192465c7d6e583.ctex"
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_xaop3"]
+radius = 74.0
+
+[node name="Widget" type="Node2D"]
+script = ExtResource("1_yk74w")
+
+[node name="Highlight" type="Sprite2D" parent="."]
+visible = false
+material = SubResource("ShaderMaterial_ryrav")
+texture = ExtResource("3_vdeyo")
+
+[node name="Blocks" type="Sprite2D" parent="."]
+material = SubResource("ShaderMaterial_xaop3")
+texture = SubResource("CompressedTexture2D_xaop3")
+
+[node name="Area2D" type="Area2D" parent="."]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Area2D"]
+shape = SubResource("CircleShape2D_xaop3")
+
+[connection signal="mouse_shape_entered" from="Area2D" to="." method="_on_area_2d_mouse_shape_entered"]
+[connection signal="mouse_shape_exited" from="Area2D" to="." method="_on_area_2d_mouse_shape_exited"]

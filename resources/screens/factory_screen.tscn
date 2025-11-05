@@ -1,0 +1,8 @@
+[gd_scene load_steps=2 format=3 uid="uid://crfyb5xvpa45u"]
+
+[ext_resource type="Script" uid="uid://37q234k545a6" path="res://scripts/factory_mouse_handler.gd" id="1_ediyy"]
+
+[node name="FactoryScreen" type="Node2D"]
+
+[node name="FactoryMouseHandler" type="Node2D" parent="."]
+script = ExtResource("1_ediyy")
